@@ -1,103 +1,120 @@
-import Image from "next/image";
+"use client";
+
+import React, { useRef, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
+import ThreeScenes from "./three/page";
+
+function LaptopModel() {
+  const { scene } = useGLTF("/macbook.glb");
+  const meshRef = useRef<THREE.Group>(null);
+
+  useEffect(() => {
+    if (scene) {
+      // Center the model
+      const box = new THREE.Box3().setFromObject(scene);
+      const center = box.getCenter(new THREE.Vector3());
+      scene.position.sub(center);
+
+      // Scale to fit viewport - increased scale for zoom
+      scene.scale.set(8, 8, 8);
+
+      // Set initial rotation for consistent view
+      scene.rotation.set(0, 0.3, 0);
+    }
+  }, [scene]);
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.003;
+    }
+  });
+
+  return <primitive object={scene} ref={meshRef} />;
+}
+
+function Scene() {
+  return (
+    <Canvas camera={{ position: [0, 0, 4], fov: 50 }}>
+      <ambientLight intensity={1.5} />
+      <directionalLight position={[5, 5, 5]} intensity={2} castShadow />
+      <directionalLight position={[-5, 3, -3]} intensity={1.5} />
+      <pointLight position={[0, 5, 0]} intensity={1} />
+      <spotLight position={[0, 10, 10]} intensity={1.5} angle={0.3} />
+      <LaptopModel />
+      <OrbitControls
+        enablePan={false}
+        enableZoom={true}
+        enableRotate={true}
+        autoRotate={false}
+        maxDistance={6}
+        minDistance={3}
+        target={[0, 0, 0]}
+      />
+    </Canvas>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen righteous-regular bg-black text-white">
+      <div className="container mx-auto px-6 py-12 min-h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+          {/* Left Section - Portfolio Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-6xl play-regular md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                Abhi raj.k
+              </h1>
+              <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <p className="text-2xl md:text-3xl text-gray-300 font-light">
+              Creative Developer & Designer
+            </p>
+
+            <p className="text-lg text-gray-400 leading-relaxed max-w-xl">
+              Crafting immersive digital experiences through the intersection of
+              code, design, and innovation. Specializing in 3D web experiences,
+              interactive applications, and modern web technologies.
+            </p>
+
+            <div className="flex flex-wrap gap-4 pt-4">
+              <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105">
+                View Work
+              </button>
+              <button className="px-8 py-3 border-2 border-purple-400 rounded-lg font-semibold hover:bg-purple-400/10 transition-all duration-300">
+                Get in Touch
+              </button>
+            </div>
+
+            {/* <div className="flex gap-6 pt-4">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-400">5+</div>
+                <div className="text-sm text-gray-400">Years Experience</div>
+              </div>
+              <div className="w-px bg-gray-700"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-400">50+</div>
+                <div className="text-sm text-gray-400">Projects Done</div>
+              </div>
+              <div className="w-px bg-gray-700"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-400">30+</div>
+                <div className="text-sm text-gray-400">Happy Clients</div>
+              </div>
+            </div> */}
+          </div>
+
+          <div className="relative h-[500px] lg:h-[600px]">
+            <div className="relative h-full rounded-2xl overflow-hidden">
+              {/* <Scene /> */}
+              <ThreeScenes />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </main>
   );
 }
