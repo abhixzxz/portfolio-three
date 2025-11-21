@@ -1,60 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
-import * as THREE from "three";
 import ThreeScenes from "./three/page";
-
-function LaptopModel() {
-  const { scene } = useGLTF("/macbook.glb");
-  const meshRef = useRef<THREE.Group>(null);
-
-  useEffect(() => {
-    if (scene) {
-      // Center the model
-      const box = new THREE.Box3().setFromObject(scene);
-      const center = box.getCenter(new THREE.Vector3());
-      scene.position.sub(center);
-
-      // Scale to fit viewport - increased scale for zoom
-      scene.scale.set(8, 8, 8);
-
-      // Set initial rotation for consistent view
-      scene.rotation.set(0, 0.3, 0);
-    }
-  }, [scene]);
-
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.003;
-    }
-  });
-
-  return <primitive object={scene} ref={meshRef} />;
-}
-
-function Scene() {
-  return (
-    <Canvas camera={{ position: [0, 0, 4], fov: 50 }}>
-      <ambientLight intensity={1.5} />
-      <directionalLight position={[5, 5, 5]} intensity={2} castShadow />
-      <directionalLight position={[-5, 3, -3]} intensity={1.5} />
-      <pointLight position={[0, 5, 0]} intensity={1} />
-      <spotLight position={[0, 10, 10]} intensity={1.5} angle={0.3} />
-      <LaptopModel />
-      <OrbitControls
-        enablePan={false}
-        enableZoom={true}
-        enableRotate={true}
-        autoRotate={false}
-        maxDistance={6}
-        minDistance={3}
-        target={[0, 0, 0]}
-      />
-    </Canvas>
-  );
-}
 
 export default function Home() {
   return (

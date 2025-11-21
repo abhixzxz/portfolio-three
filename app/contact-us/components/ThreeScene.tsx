@@ -11,12 +11,10 @@ const fragmentShader = `
   varying vec3 v_color;
   varying vec3 v_normal;
   void main() {
-    vec3 light = vec3(0.0);
     vec3 skyColor = vec3(1.000, 1.000, 0.547);
     vec3 groundColor = vec3(0.562, 0.275, 0.111);
     vec3 lightDirection = normalize(vec3(0.0, -1.0, -1.0));
-    light += dot(lightDirection, v_normal);
-    light = mix(skyColor, groundColor, dot(lightDirection, v_normal));
+    vec3 light = mix(skyColor, groundColor, dot(lightDirection, v_normal));
     gl_FragColor = vec4(light * v_color, 1.0);
   }
 `;
@@ -48,7 +46,7 @@ const vertexShader = `
     vec3 i2 = max(g.xyz, l.zxy);
     vec3 x1 = x0 - i1 + 1.0 * C.xxx;
     vec3 x2 = x0 - i2 + 2.0 * C.xxx;
-    vec3 x3 = x0 - 1. + 3.0 * C.xxx;
+    vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;
     i = mod(i, 289.0);
     vec4 p = permute(permute(permute(
           i.z + vec4(0.0, i1.z, i2.z, 1.0))
@@ -87,7 +85,7 @@ const vertexShader = `
     vUv = uv;
     float noise = snoise(position * u_progress + u_time / 10.0);
     vec3 newPos = position * (noise + 0.7);
-    v_color = hsv2rgb(vec3(noise * 0.1 + 0.03 + u_rotation * 0.3, .7, 0.7));
+    v_color = hsv2rgb(vec3(noise * 0.1 + 0.03 + u_rotation * 0.3, 0.7, 0.7));
     v_normal = normal;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
   }
@@ -104,8 +102,8 @@ const particleVertexShader = `
   uniform float u_time;
   void main() {
     vec3 p = position;
-    p.y += 0.25*(sin(p.y * 5.0 + u_time) * 0.5 + 0.5);
-    p.z += 0.05*(sin(p.y * 10.0 + u_time) * 0.5 + 0.5);
+    p.y += 0.25 * (sin(p.y * 5.0 + u_time) * 0.5 + 0.5);
+    p.z += 0.05 * (sin(p.y * 10.0 + u_time) * 0.5 + 0.5);
     vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
     gl_PointSize = 10.0 * (1.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
@@ -140,37 +138,35 @@ const backgroundFragmentShader = `
       else
         f2 = hsl.z + hsl.y - hsl.y * hsl.z;
       float f1 = 2.0 * hsl.z - f2;
-      rgb.r = hue2rgb(f1, f2, hsl.x + (1.0/3.0));
+      rgb.r = hue2rgb(f1, f2, hsl.x + (1.0 / 3.0));
       rgb.g = hue2rgb(f1, f2, hsl.x);
-      rgb.b = hue2rgb(f1, f2, hsl.x - (1.0/3.0));
+      rgb.b = hue2rgb(f1, f2, hsl.x - (1.0 / 3.0));
     }
     return rgb;
   }
-  vec3 hsl2rgb(float h, float s, float l) {
-    return hsl2rgb(vec3(h, s, l));
-  }
   vec3 random3(vec3 c) {
-    float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+    float j = 4096.0 * sin(dot(c, vec3(17.0, 59.4, 15.0)));
     vec3 r;
-    r.z = fract(512.0*j);
-    j *= .125;
-    r.x = fract(512.0*j);
-    j *= .125;
-    r.y = fract(512.0*j);
-    return r-0.5;
+    r.z = fract(512.0 * j);
+    j *= 0.125;
+    r.x = fract(512.0 * j);
+    j *= 0.125;
+    r.y = fract(512.0 * j);
+    return r - 0.5;
   }
-  const float F3 =  0.3333333;
-  const float G3 =  0.1666667;
+  const float F3 = 0.3333333;
+  const float G3 = 0.1666667;
   float simplex3d(vec3 p) {
     vec3 s = floor(p + dot(p, vec3(F3)));
     vec3 x = p - s + dot(s, vec3(G3));
     vec3 e = step(vec3(0.0), x - x.yzx);
-    vec3 i1 = e*(1.0 - e.zxy);
-    vec3 i2 = 1.0 - e.zxy*(1.0 - e);
+    vec3 i1 = e * (1.0 - e.zxy);
+    vec3 i2 = 1.0 - e.zxy * (1.0 - e);
     vec3 x1 = x - i1 + G3;
-    vec3 x2 = x - i2 + 2.0*G3;
-    vec3 x3 = x - 1.0 + 3.0*G3;
-    vec4 w, d;
+    vec3 x2 = x - i2 + 2.0 * G3;
+    vec3 x3 = x - 1.0 + 3.0 * G3;
+    vec4 w;
+    vec4 d;
     w.x = dot(x, x);
     w.y = dot(x1, x1);
     w.z = dot(x2, x2);
@@ -185,7 +181,9 @@ const backgroundFragmentShader = `
     d *= w;
     return dot(d, vec4(52.0));
   }
-  float hash(vec2 p) { return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x)))); }
+  float hash(vec2 p) {
+    return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
+  }
   varying vec2 vUv;
   uniform float u_progress;
   uniform float u_time;
@@ -193,7 +191,7 @@ const backgroundFragmentShader = `
     float n = simplex3d(vec3(vUv.xy, u_time * 1.0));
     vec3 color = vec3(0.0);
     float val = hash(vUv + u_time);
-    gl_FragColor = vec4(color + vec3(val / 100.), 1.0);
+    gl_FragColor = vec4(color + vec3(val / 100.0), 1.0);
   }
 `;
 
@@ -209,14 +207,22 @@ const backgroundVertexShader = `
   }
 `;
 
-function Sphere({ rotation }) {
-  const meshRef = useRef();
-  const materialRef = useRef();
-  const clock = useRef(new THREE.Clock());
+interface ShaderMaterialRef extends THREE.Material {
+  uniforms: Record<string, { value: unknown }>;
+}
+
+interface SphereProps {
+  rotation: number;
+}
+
+function Sphere({ rotation }: SphereProps) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const materialRef = useRef<ShaderMaterialRef>(null);
+  const clock = useRef<THREE.Clock>(new THREE.Clock());
 
   useFrame(() => {
     const elapsedTime = clock.current.getElapsedTime();
-    if (materialRef.current) {
+    if (materialRef.current?.uniforms) {
       materialRef.current.uniforms.u_time.value = elapsedTime;
       materialRef.current.uniforms.u_rotation.value = rotation;
     }
@@ -226,18 +232,24 @@ function Sphere({ rotation }) {
   });
 
   useEffect(() => {
-    gsap
-      .timeline({ repeat: -1, yoyo: true })
-      .to(materialRef.current.uniforms.u_progress, {
-        value: 5,
-        duration: 5,
-        ease: "power3.inOut",
-      })
-      .to(materialRef.current.uniforms.u_progress, {
-        value: 1,
-        duration: 5,
-        ease: "power3.inOut",
-      });
+    if (materialRef.current?.uniforms) {
+      const timeline = gsap
+        .timeline({ repeat: -1, yoyo: true })
+        .to(materialRef.current.uniforms.u_progress, {
+          value: 5,
+          duration: 5,
+          ease: "power3.inOut",
+        })
+        .to(materialRef.current.uniforms.u_progress, {
+          value: 1,
+          duration: 5,
+          ease: "power3.inOut",
+        });
+
+      return () => {
+        timeline.kill();
+      };
+    }
   }, []);
 
   const uniforms = useMemo(
@@ -253,7 +265,7 @@ function Sphere({ rotation }) {
     <mesh ref={meshRef}>
       <sphereGeometry args={[1, 162, 162]} />
       <shaderMaterial
-        ref={materialRef}
+        ref={materialRef as React.Ref<THREE.Material>}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
@@ -263,13 +275,13 @@ function Sphere({ rotation }) {
 }
 
 function Particles() {
-  const pointsRef = useRef();
-  const materialRef = useRef();
-  const clock = useRef(new THREE.Clock());
+  const pointsRef = useRef<THREE.Points>(null);
+  const materialRef = useRef<ShaderMaterialRef>(null);
+  const clock = useRef<THREE.Clock>(new THREE.Clock());
 
   useFrame(() => {
     const elapsedTime = clock.current.getElapsedTime();
-    if (materialRef.current) {
+    if (materialRef.current?.uniforms) {
       materialRef.current.uniforms.u_time.value = elapsedTime;
     }
     if (pointsRef.current) {
@@ -278,11 +290,17 @@ function Particles() {
   });
 
   useEffect(() => {
-    gsap.to(materialRef.current.uniforms.u_progress, {
-      value: 0.4,
-      duration: 5,
-      ease: "power3.inOut",
-    });
+    if (materialRef.current?.uniforms) {
+      const tween = gsap.to(materialRef.current.uniforms.u_progress, {
+        value: 0.4,
+        duration: 5,
+        ease: "power3.inOut",
+      });
+
+      return () => {
+        tween.kill();
+      };
+    }
   }, []);
 
   const uniforms = useMemo(
@@ -321,23 +339,23 @@ function Particles() {
         />
       </bufferGeometry>
       <shaderMaterial
-        ref={materialRef}
+        ref={materialRef as React.Ref<THREE.Material>}
         vertexShader={particleVertexShader}
         fragmentShader={particleFragmentShader}
         uniforms={uniforms}
-        transparent={true}
+        transparent
       />
     </points>
   );
 }
 
 function Background() {
-  const materialRef = useRef();
-  const clock = useRef(new THREE.Clock());
+  const materialRef = useRef<ShaderMaterialRef>(null);
+  const clock = useRef<THREE.Clock>(new THREE.Clock());
 
   useFrame(() => {
     const elapsedTime = clock.current.getElapsedTime();
-    if (materialRef.current) {
+    if (materialRef.current?.uniforms) {
       materialRef.current.uniforms.u_time.value = elapsedTime;
     }
   });
@@ -354,7 +372,7 @@ function Background() {
     <mesh position={[0, 0, -2]}>
       <planeGeometry args={[100, 15, 16]} />
       <shaderMaterial
-        ref={materialRef}
+        ref={materialRef as React.Ref<THREE.Material>}
         vertexShader={backgroundVertexShader}
         fragmentShader={backgroundFragmentShader}
         uniforms={uniforms}
@@ -363,7 +381,11 @@ function Background() {
   );
 }
 
-function Scene({ rotation }) {
+interface SceneProps {
+  rotation: number;
+}
+
+function Scene({ rotation }: SceneProps) {
   return (
     <>
       <ambientLight intensity={0.5} />
@@ -375,11 +397,11 @@ function Scene({ rotation }) {
   );
 }
 
-interface ThreeSceneProps {
+interface ThreeSceneCanvasProps {
   rotation: number;
 }
 
-export function ThreeSceneCanvas({ rotation }: ThreeSceneProps) {
+export function ThreeSceneCanvas({ rotation }: ThreeSceneCanvasProps) {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <Canvas>

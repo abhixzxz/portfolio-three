@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { Fancybox } from "@fancyapps/ui";
-import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { X, ExternalLink } from "lucide-react";
 
 interface PlaneData {
   mesh: THREE.Mesh;
@@ -12,7 +11,57 @@ interface PlaneData {
   imgSrc: string;
   targetStrength: number;
   individualOffset: number;
+  projectData: (typeof projectsData)[0];
 }
+
+const projectsData = [
+  {
+    title: "Viacar",
+    description: "Book cars & Publish ride",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/abhirajk-viacar.webp",
+    link: "https://viacar.vercel.app/",
+  },
+  {
+    title: "Fast Legend",
+    description: "A brief description of Project 2.",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/abhirajk-fastlegend.webp",
+    link: "https://fastlegend.vercel.app/",
+  },
+  {
+    title: "Kareflow.ai",
+    description:
+      "A collection of the work I’ve built with React, Node.js, and modern web technologies—ranging from full-stack applications to real-world problem-solving tools. Each project reflects my focus on clean architecture, performance, and delightful user experiences.",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/abhirajkviacar.webp",
+    link: "https://www.kareflowai.com/",
+  },
+  {
+    title: "Mydear pa",
+    description:
+      "MyDearPa is a platform that connects patients with healthcare providers.",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/abhirajk-mydearpa.webp",
+    link: "https://mydearpa.com/",
+  },
+  {
+    title: "Mykare app",
+    description:
+      "MyKare — A fintech-healthcare app by JustKare Technologies that helps users save daily via UPI into digital gold, mutual funds, or recurring deposits to build a “health fund.",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/abhirajk-mykare%20appp.webp",
+    link: "https://mykareapp.com",
+  },
+  {
+    title: "Karetrip.com",
+    description:
+      "Karetrip — A medical-travel platform (run by JustKare Technologies) that helps international patients access healthcare in India. It offers end-to-end support: doctor & hospital recommendations, treatment quotes, second opinions, and priority admissions",
+    image:
+      "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763712140/karetrip-abhirajk.webp",
+    link: "https://karetrip.com",
+  },
+];
 
 export default function ProjectAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -23,6 +72,9 @@ export default function ProjectAnimation() {
   const raycasterRef = useRef(new THREE.Raycaster());
   const mouseRef = useRef(new THREE.Vector2());
   const animationRef = useRef<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof projectsData)[0] | null
+  >(null);
 
   const layoutRef = useRef({
     columns: 3,
@@ -30,15 +82,6 @@ export default function ProjectAnimation() {
     spacingY: 1.8,
     planeSize: 1.5,
   });
-
-  const images = [
-    "https://images.unsplash.com/photo-1576506542790-51244b486a6b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1751554827598-c96cb294c0e6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1750117839548-0500942b9dfe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1752643719885-d3a7408ec711?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -68,8 +111,8 @@ export default function ProjectAnimation() {
     // Load textures and create planes
     const loader = new THREE.TextureLoader();
 
-    images.forEach((img, i) => {
-      const texture = loader.load(img);
+    projectsData.forEach((project, i) => {
+      const texture = loader.load(project.image);
       const planeUniforms = {
         uTime: { value: 0 },
         uTexture: { value: texture },
@@ -138,9 +181,10 @@ export default function ProjectAnimation() {
         mesh: plane,
         uniforms: planeUniforms,
         isHovering: false,
-        imgSrc: img,
+        imgSrc: project.image,
         targetStrength: 0,
         individualOffset: i * 0.3,
+        projectData: project,
       });
     });
 
@@ -154,7 +198,6 @@ export default function ProjectAnimation() {
       const intersects = raycasterRef.current.intersectObjects(
         planesRef.current.map((p) => p.mesh)
       );
-
       renderer.domElement.style.cursor =
         intersects.length > 0 ? "pointer" : "default";
 
@@ -192,7 +235,7 @@ export default function ProjectAnimation() {
           (p) => p.mesh === intersects[0].object
         );
         if (clickedPlane) {
-          Fancybox.show([{ src: clickedPlane.imgSrc, type: "image" }]);
+          setSelectedProject(clickedPlane.projectData);
         }
       }
     };
@@ -210,6 +253,11 @@ export default function ProjectAnimation() {
         layoutRef.current.spacingX = 0;
         layoutRef.current.spacingY = 1.6;
         layoutRef.current.planeSize = 2.5;
+      } else if (width < 1024) {
+        layoutRef.current.columns = 2;
+        layoutRef.current.spacingX = 1.5;
+        layoutRef.current.spacingY = 1.5;
+        layoutRef.current.planeSize = 1.8;
       } else {
         layoutRef.current.columns = 3;
         layoutRef.current.spacingX = 1.8;
@@ -223,7 +271,6 @@ export default function ProjectAnimation() {
     const updatePlanesLayout = () => {
       planesRef.current.forEach((p, i) => {
         const col = i % layoutRef.current.columns;
-        const row = Math.floor(i / layoutRef.current.columns);
         p.mesh.geometry.dispose();
         p.mesh.geometry = new THREE.PlaneGeometry(
           layoutRef.current.planeSize,
@@ -248,8 +295,8 @@ export default function ProjectAnimation() {
     const animate = () => {
       animationRef.current = requestAnimationFrame(animate);
       planesRef.current.forEach(({ uniforms, targetStrength }) => {
-        uniforms.uTime.value += 0.012;
-        uniforms.uHoverTime.value += 0.015;
+        (uniforms.uTime.value as number) += 0.012;
+        (uniforms.uHoverTime.value as number) += 0.015;
 
         const strengthDiff =
           targetStrength - (uniforms.uStrength.value as number);
@@ -305,6 +352,53 @@ export default function ProjectAnimation() {
           height: "100vh",
         }}
       />
+
+      {/* Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 rounded-lg overflow-hidden max-w-2xl w-full animate-in fade-in zoom-in duration-300">
+            {/* Image Container */}
+            <div className="relative w-full h-auto">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-auto max-h-96 object-cover"
+              />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Project Info - Bottom Right */}
+              <div className="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-black to-transparent p-6 sm:p-8">
+                <div className="space-y-4">
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                      {selectedProject.title}
+                    </h2>
+                    <p className="text-gray-300 text-sm sm:text-base">
+                      {selectedProject.description}
+                    </p>
+                  </div>
+
+                  {/* Live Demo Button */}
+                  <button
+                    onClick={() => window.open(selectedProject.link, "_blank")}
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 w-full sm:w-auto justify-center sm:justify-start"
+                  >
+                    <ExternalLink size={18} />
+                    Live Demo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

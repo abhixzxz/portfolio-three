@@ -7,7 +7,7 @@ import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
 function LaptopModel() {
-  const { scene, error } = useGLTF("/laptop.glb"); // Load from public directory
+  const { scene, error } = useGLTF("/laptop.glb");
   const meshRef = useRef<THREE.Group>(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function LaptopModel() {
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.005; // Slow rotation for better visibility
+      meshRef.current.rotation.y += 0.005;
     }
   });
 
