@@ -6,11 +6,19 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 declare global {
   interface Window {
-    SimplexNoise: any;
-    TweenMax: any;
-    Power1: any;
-    Elastic: any;
-    chroma: any;
+    SimplexNoise: new () => { noise2D: (x: number, y: number) => number; noise3D: (x: number, y: number, z: number) => number };
+    TweenMax: {
+      to: (target: any, duration: number, props: any) => void;
+      kill: (target?: any) => void;
+    };
+    Power1: { easeInOut: (t: number) => number; easeOut: (t: number) => number };
+    Elastic: { easeInOut: (t: number) => number; easeOut: (t: number) => number };
+    chroma: {
+      scale: (colors: string[]) => {
+        mode: (mode: string) => { colors: (count: number) => string[] };
+      };
+      (color: string): { hex: () => string };
+    };
   }
 }
 

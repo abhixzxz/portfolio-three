@@ -7,7 +7,7 @@ import { ThreeSceneCanvas } from "./ThreeScene";
 
 export default function ContactUsGraphics() {
   const [rotation, setRotation] = useState(0);
-  const [scrollVelocity, setScrollVelocity] = useState(0);
+  const [, setScrollVelocity] = useState(0);
   const velocityRef = useRef(0);
   const contactRef = useRef(null);
 

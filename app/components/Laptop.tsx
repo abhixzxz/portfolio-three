@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import * as THREE from 'three';
+import * as THREE from "three";
 
 function LaptopModel() {
   const { scene, error } = useGLTF("/laptop.glb"); // Load from public directory
@@ -48,20 +48,16 @@ function LaptopModel() {
 
 export default function Laptop() {
   return (
-    <div style={{ width: '100%', height: '500px' }}>
-      <Canvas 
+    <div style={{ width: "100%", height: "500px" }}>
+      <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
+        style={{ background: "transparent" }}
       >
         <ambientLight intensity={0.8} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
         <LaptopModel />
-        <OrbitControls 
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-        />
+        <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
       </Canvas>
     </div>
   );

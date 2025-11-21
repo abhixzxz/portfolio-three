@@ -5,7 +5,7 @@ const ContactForm = () => {
     <div className="w-full max-w-2xl mx-auto px-4 py-8 sm:py-12">
       <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-center uppercase text-white mb-6 sm:mb-8 tracking-wider">
-          Let's Connect
+          Let&apos;s Connect
         </h2>
 
         <form className="space-y-5 sm:space-y-6">

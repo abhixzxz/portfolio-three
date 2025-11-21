@@ -296,13 +296,13 @@ function Particles() {
   const particlesPosition = useMemo(() => {
     const N = 30000;
     const position = new Float32Array(N * 3);
-    let inc = Math.PI * (3 - Math.sqrt(5));
-    let offset = 2 / N;
-    let radius = 2;
+    const inc = Math.PI * (3 - Math.sqrt(5));
+    const offset = 2 / N;
+    const radius = 2;
     for (let i = 0; i < N; i++) {
-      let y = i * offset - 1 + offset / 2;
-      let r = Math.sqrt(1 - y * y);
-      let phi = i * inc;
+      const y = i * offset - 1 + offset / 2;
+      const r = Math.sqrt(1 - y * y);
+      const phi = i * inc;
       position[3 * i] = radius * Math.cos(phi) * r;
       position[3 * i + 1] = radius * y;
       position[3 * i + 2] = radius * Math.sin(phi) * r;
