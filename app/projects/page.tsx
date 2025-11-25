@@ -25,9 +25,9 @@ export const metadata = {
   },
 };
 
-export default function Projects() {
+export default function FooterSection() {
   return (
-    <div>
+    <div className="h-screen bg-black">
       <ProjectAnimation />
     </div>
   );
