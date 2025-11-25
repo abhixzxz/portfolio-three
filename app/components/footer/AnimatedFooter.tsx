@@ -16,25 +16,24 @@ import ContactInfo from "./ContactInfo";
 import SocialLinks from "./SocialLinks";
 
 const AnimatedFooter: React.FC = () => {
-  const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const slideImages: SlideImage[] = [
     {
       url: "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763752777/reactlogo-abhirajk.jpg",
-      alt: "React js logo abhiraj k",
+      alt: "React.js logo - Abhiraj K, Best software engineer in Kochi, Kerala",
     },
     {
       url: "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763752777/abhirajk-pythonlogo.jpg",
-      alt: "Python logo abhiraj k",
+      alt: "Python logo - Abhiraj K, Top full stack developer in Kerala",
     },
     {
       url: "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763752777/abhiraj-nodejs.jpg",
-      alt: "Node js logo abhiraj k",
+      alt: "Node.js logo - Abhiraj K, Expert MERN stack developer in Kochi",
     },
     {
       url: "https://res.cloudinary.com/dm6t9pdbe/image/upload/v1763752777/abhiraj-nextjs.jpg",
-      alt: "Next js logo abhiraj k",
+      alt: "Next.js logo - Abhiraj K, Professional web developer in Kerala",
     },
   ];
 
@@ -48,7 +47,7 @@ const AnimatedFooter: React.FC = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => {}, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -68,7 +67,7 @@ const AnimatedFooter: React.FC = () => {
         className="relative w-full text-yellow-100 overflow-hidden"
         style={footerContainerStyle}
         role="contentinfo"
-        aria-label="Site footer"
+        aria-label="Site footer - Abhiraj K, Best Software Engineer in Kochi, Kerala"
       >
         {/* Three.js Canvas Background */}
         <ThreeBackground
@@ -79,7 +78,12 @@ const AnimatedFooter: React.FC = () => {
         {/* Content Overlay */}
         <div style={contentOverlayStyle}>
           {/* Main Footer Grid */}
-          <div className="footer-section aubrey-regular" style={mainGridStyle}>
+          <div
+            className="footer-section aubrey-regular"
+            style={mainGridStyle}
+            role="navigation"
+            aria-label="Footer navigation"
+          >
             {/* Brand Section */}
             <BrandSection
               name="Abhiraj K"
@@ -101,11 +105,14 @@ const AnimatedFooter: React.FC = () => {
 
           {/* Footer Bottom */}
           <div
-            className="footer-bottom w-full text-center "
+            className="footer-bottom w-full text-center"
             style={footerBottomStyle}
+            role="contentinfo"
+            aria-label="Copyright information"
           >
             <div>
-              © {new Date().getFullYear()} Abhiraj K. All rights reserved.
+              © {new Date().getFullYear()} Abhiraj K - Best Software Engineer in
+              Kochi, Kerala. All rights reserved.
             </div>
           </div>
         </div>

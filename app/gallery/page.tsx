@@ -147,6 +147,10 @@ const GALLERY_IMAGES: GalleryImage[] = [
 export default function Home() {
   return (
     <main>
+      <h1 className="sr-only">
+        Abhiraj K - Professional Portfolio Gallery | Best Software Engineer in
+        Kochi, Kerala
+      </h1>
       <Gallery images={GALLERY_IMAGES} columns={5} />
     </main>
   );

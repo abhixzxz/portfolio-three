@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { AnimatedFooter } from "./components/footer";
 import Link from "next/link";
-import HeroSection from "./components/HeroSection/herosection";
 
 export default function Home() {
   return (
@@ -52,7 +51,7 @@ export default function Home() {
         <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative">
           <Image
             src="/abhirajk.jpg"
-            alt="Abhi raj.k"
+            alt="Abhiraj K - Best Software Engineer in Kochi, Kerala - Professional Profile Photo"
             fill
             priority
             className="object-cover"
@@ -60,7 +59,6 @@ export default function Home() {
           />
         </div>
       </div>
-      {/* <HeroSection /> */}
 
       <AnimatedFooter />
     </main>

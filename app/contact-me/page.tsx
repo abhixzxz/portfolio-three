@@ -7,16 +7,24 @@ export const metadata = {
   description:
     "Get in touch with Abhiraj K, Full Stack Developer specializing in React.js, Next.js, Node.js. Available for web development projects, collaborations, and technical consultations.",
   keywords: [
+    "Contact Abhiraj K Kochi",
+    "Hire best software engineer Kerala",
+    "top full stack developer Kochi contact",
+    "React developer Kochi hire",
+    "Node.js developer Kerala contact",
+    "freelance software engineer Kochi",
+    "web development services Kerala",
+    "hire MERN stack developer Kochi",
+    "professional software engineer Kerala",
+    "best web developer Kochi contact",
     "Contact Abhiraj K",
-    "Hire Full Stack Developer",
+    "Hire Full Stack Developer kochi",
     "React.js Developer Contact",
     "Next.js Developer Hire",
     "Node.js Developer Contact",
-    "Web Development Services",
-    "Freelance Developer",
     "Indian Developer Contact",
     "Full Stack Development Services",
-    "Web Development Consultation"
+    "Web Development Consultation",
   ],
   alternates: {
     canonical: "https://www.abhirajk.online/contact-me",

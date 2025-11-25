@@ -98,37 +98,57 @@ const Navbar: React.FC = () => {
         }
       `}</style>
 
-      <nav className="nav-container" aria-label="Main Navigation">
-        <div
-          className="button"
-          onClick={toggleMenu}
-          role="button"
-          aria-label="Toggle menu"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && toggleMenu()}
+      <header className="nav-container" role="banner">
+        <nav
+          className="w-full"
+          aria-label="Main Navigation - Abhiraj K, Best Software Engineer in Kochi, Kerala"
         >
-          <span className="bar bar1"></span>
-          <span className="bar bar2"></span>
-          <span className="bar bar3"></span>
-        </div>
-        <ul className="menu-list">
-          <li>
-            <Link href="/" className="nav-link glass-antiqua-regular ">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="nav-link glass-antiqua-regular">
-              About-me
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="nav-link glass-antiqua-regular ">
-              Contact-me
-            </Link>
-          </li>
-        </ul>
-      </nav>
+          <button
+            className="button"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+            aria-controls="main-navigation-menu"
+            type="button"
+          >
+            <span className="bar bar1"></span>
+            <span className="bar bar2"></span>
+            <span className="bar bar3"></span>
+          </button>
+          <ul className="menu-list" id="main-navigation-menu" role="menubar">
+            <li role="none">
+              <Link
+                href="/"
+                className="nav-link glass-antiqua-regular"
+                role="menuitem"
+                aria-label="Home - Abhiraj K Portfolio"
+              >
+                Home
+              </Link>
+            </li>
+            <li role="none">
+              <Link
+                href="/about-me"
+                className="nav-link glass-antiqua-regular"
+                role="menuitem"
+                aria-label="About Abhiraj K - Full Stack Developer in Kerala"
+              >
+                About-me
+              </Link>
+            </li>
+            <li role="none">
+              <Link
+                href="/contact-me"
+                className="nav-link glass-antiqua-regular"
+                role="menuitem"
+                aria-label="Contact Abhiraj K - Software Engineer in Kochi"
+              >
+                Contact-me
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
     </>
   );
 };
