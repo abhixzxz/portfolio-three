@@ -1,17 +1,62 @@
-// app/page.tsx
 import type { Metadata } from "next";
 import Gallery from "./components/gallery";
 
 export const metadata: Metadata = {
-  title: "Interactive Image Gallery",
+  metadataBase: new URL("https://www.abhirajk.online"),
+  title: "Interactive Gallery | Abhiraj K Portfolio",
   description:
-    "Explore our interactive image gallery with smooth parallax effects and responsive design.",
+    "Explore the interactive gallery showcasing Abhiraj K's work, projects, and creative endeavors. Modern web gallery with smooth animations and responsive design.",
+  keywords: [
+    "Abhiraj K Gallery",
+    "Portfolio Gallery",
+    "Interactive Gallery",
+    "Web Developer Gallery",
+    "Creative Gallery",
+    "Modern Web Gallery",
+    "Responsive Gallery",
+    "Parallax Gallery",
+    "Developer Portfolio Gallery",
+    "Abhiraj Gallery",
+  ],
   viewport: "width=device-width, initial-scale=1",
   openGraph: {
-    title: "Interactive Image Gallery",
+    title: "Interactive Gallery | Abhiraj K Portfolio",
     description:
-      "Explore our interactive image gallery with smooth parallax effects",
+      "Explore the interactive gallery showcasing Abhiraj K's work, projects, and creative endeavors with smooth animations and responsive design.",
+    url: "https://www.abhirajk.online/gallery",
+    siteName: "Abhiraj K Portfolio",
+    images: [
+      {
+        url: "/og-gallery.png",
+        width: 1200,
+        height: 630,
+        alt: "Abhiraj K Interactive Gallery Showcase",
+      },
+    ],
     type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interactive Gallery | Abhiraj K",
+    description:
+      "Explore the interactive gallery showcasing Abhiraj K's work with smooth animations and responsive design.",
+    images: ["/og-gallery.png"],
+    creator: "@abhirajk",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://www.abhirajk.online/gallery",
   },
 };
 

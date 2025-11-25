@@ -22,6 +22,16 @@ const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const emailBody = `Name: ${formData.name}%0DEmail: ${formData.email}%0D%0DMessage:%0D${formData.message}`;
+
+    const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=abhirajk0123@gmail.com&su=${encodeURIComponent(
+      formData.subject
+    )}&body=${emailBody}`;
+
+    // Open Gmail in new tab
+    window.open(gmailURL, "_blank");
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus("success");

@@ -3,33 +3,59 @@ import ContactUsGraphics from "./components/ContactUsGraphics";
 
 export const metadata = {
   metadataBase: new URL("https://www.abhirajk.online"),
-  title: "Contact Us | Abhiraj K",
+  title: "Contact Abhiraj K | Full Stack Developer for Hire",
   description:
-    "Get in touch with Abhiraj K for collaborations, web development projects, or technical discussions.",
+    "Get in touch with Abhiraj K, Full Stack Developer specializing in React.js, Next.js, Node.js. Available for web development projects, collaborations, and technical consultations.",
+  keywords: [
+    "Contact Abhiraj K",
+    "Hire Full Stack Developer",
+    "React.js Developer Contact",
+    "Next.js Developer Hire",
+    "Node.js Developer Contact",
+    "Web Development Services",
+    "Freelance Developer",
+    "Indian Developer Contact",
+    "Full Stack Development Services",
+    "Web Development Consultation"
+  ],
   alternates: {
-    canonical: "https://www.abhirajk.online/contact-us",
+    canonical: "https://www.abhirajk.online/contact-me",
   },
   openGraph: {
-    title: "Contact Us | Abhiraj K",
+    title: "Contact Abhiraj K | Full Stack Developer for Hire",
     description:
-      "Reach out to Full Stack Developer Abhiraj K through the contact page.",
-    url: "https://www.abhirajk.online/contact-us",
+      "Get in touch with Abhiraj K, Full Stack Developer specializing in React.js, Next.js, Node.js. Available for web development projects and collaborations.",
+    url: "https://www.abhirajk.online/contact-me",
+    siteName: "Abhiraj K Portfolio",
     images: [
       {
         url: "/og-contact.png",
         width: 1200,
         height: 630,
-        alt: "Contact Page Preview",
+        alt: "Contact Abhiraj K - Full Stack Developer",
       },
     ],
     type: "website",
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | Abhiraj K",
+    title: "Contact Abhiraj K | Full Stack Developer",
     description:
-      "Contact full-stack developer Abhiraj K for projects and opportunities.",
+      "Get in touch with Abhiraj K for web development projects, collaborations, and technical consultations.",
     images: ["/og-contact.png"],
+    creator: "@abhirajk",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

@@ -1,4 +1,5 @@
 export const keywords = [
+  "Abhiraj",
   "best software engineer in Kochi",
   "best software engineer in Kerala",
   "top software engineers in Kochi",
@@ -9,12 +10,10 @@ export const keywords = [
   "full stack developer in Kochi",
   "full stack developer in Kerala",
   "React developer in Kochi",
-  "React developer in Kerala",
   "Node.js developer in Kochi",
   "Node.js developer in Kerala",
   "best full stack developer in Kochi",
   "best full stack developer in Kerala",
-  "top MERN stack developers in Kerala",
   "top MERN stack developers in Kochi",
   "expert software developer Kochi",
   "professional software engineer Kerala",
