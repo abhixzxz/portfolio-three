@@ -1,5 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Gallery from "./components/gallery";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.abhirajk.online"),
@@ -18,7 +23,6 @@ export const metadata: Metadata = {
     "Developer Portfolio Gallery",
     "Abhiraj Gallery",
   ],
-  viewport: "width=device-width, initial-scale=1",
   openGraph: {
     title: "Interactive Gallery | Abhiraj K Portfolio",
     description:
