@@ -68,10 +68,53 @@ export const metadata = {
 };
 
 const ContactUs = () => {
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Abhiraj K - Full Stack Developer",
+    description: "Get in touch with Abhiraj K for web development projects, collaborations, and technical consultations",
+    url: "https://www.abhirajk.online/contact-me",
+    mainEntity: {
+      "@type": "Person",
+      name: "Abhiraj K",
+      jobTitle: "Full Stack Developer",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kochi",
+        addressRegion: "Kerala",
+        addressCountry: "IN"
+      }
+    },
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.abhirajk.online"
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Contact",
+          item: "https://www.abhirajk.online/contact-me"
+        }
+      ]
+    }
+  };
+
   return (
-    <div>
-      <ContactUsGraphics />
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactStructuredData) }}
+      />
+      <div>
+        <h1 className="sr-only">Contact Abhiraj K - Best Software Engineer in Kochi, Kerala - Full Stack Developer for Hire</h1>
+        <ContactUsGraphics />
+      </div>
+    </>
   );
 };
 

@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   description:
     "Abhiraj K - Full Stack Developer specializing in React.js, Next.js, Node.js, PostgreSQL, and modern web applications. Explore my portfolio showcasing innovative web solutions.",
   keywords: [
+    "Abhiraj K",
     "Abhiraj",
+    "Abhi Raj K",
     "best software engineer in Kochi",
     "best software engineer in Kerala",
     "top software engineers in Kochi",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     "full stack developer in Kochi",
     "full stack developer in Kerala",
     "React developer in Kochi",
+    "React developer in Kerala",
     "Node.js developer in Kochi",
     "Node.js developer in Kerala",
     "best full stack developer in Kochi",
@@ -36,7 +39,19 @@ export const metadata: Metadata = {
     "expert software developer Kochi",
     "professional software engineer Kerala",
     "best web developer in Kochi",
-    "Abhiraj K",
+    "Next.js developer Kochi",
+    "JavaScript developer Kerala",
+    "TypeScript developer Kochi",
+    "Three.js developer Kerala",
+    "web development services Kochi",
+    "hire full stack developer Kerala",
+    "freelance web developer Kochi",
+    "software engineer portfolio Kerala",
+    "Kochi software developer",
+    "Kerala web developer",
+    "Indian software engineer",
+    "React.js expert Kochi",
+    "Node.js expert Kerala",
   ],
   authors: [{ name: "Abhiraj K", url: "https://www.abhirajk.online" }],
   creator: "Abhiraj K",
@@ -121,52 +136,113 @@ export default function RootLayout({
 }>) {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Abhiraj K",
-    url: "https://www.abhirajk.online",
-    jobTitle: "Full Stack Developer",
-    description:
-      "Best software engineer in Kochi, Kerala specializing in React.js, Next.js, Node.js, PostgreSQL, and modern web applications",
-    sameAs: [
-      "https://www.abhirajk.online",
-      "https://github.com/abhixzxz",
-      "https://www.linkedin.com/in/abhiraj-k-0661a1235",
-      "https://www.instagram.com/abhirajk84/",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Kochi",
-      addressRegion: "Kerala",
-      addressCountry: "IN",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 9.9312,
-      longitude: 76.2673,
-    },
-    knowsAbout: [
-      "Software Development",
-      "Full Stack Development",
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "MERN Stack",
-      "Web Development",
-      "JavaScript",
-      "TypeScript",
-      "Best software engineer in Kochi",
-      "Top full stack developer in Kerala",
-    ],
-    worksFor: {
-      "@type": "Organization",
-      name: "Freelance Software Engineer",
-      description: "Best software engineer in Kochi, Kerala",
-    },
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.abhirajk.online/#person",
+        name: "Abhiraj K",
+        url: "https://www.abhirajk.online",
+        image: {
+          "@type": "ImageObject",
+          url: "https://www.abhirajk.online/abhirajk.jpg",
+          width: 1200,
+          height: 630
+        },
+        jobTitle: "Full Stack Developer",
+        description:
+          "Best software engineer in Kochi, Kerala specializing in React.js, Next.js, Node.js, PostgreSQL, and modern web applications",
+        sameAs: [
+          "https://www.abhirajk.online",
+          "https://github.com/abhixzxz",
+          "https://www.linkedin.com/in/abhiraj-k-0661a1235",
+          "https://www.instagram.com/abhirajk84/",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Kochi",
+          addressRegion: "Kerala",
+          addressCountry: "IN",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 9.9312,
+          longitude: 76.2673,
+        },
+        knowsAbout: [
+          "Software Development",
+          "Full Stack Development",
+          "React.js",
+          "Next.js",
+          "Node.js",
+          "MERN Stack",
+          "Web Development",
+          "JavaScript",
+          "TypeScript",
+          "PostgreSQL",
+          "Three.js",
+          "Framer Motion",
+          "Best software engineer in Kochi",
+          "Top full stack developer in Kerala",
+        ],
+        worksFor: {
+          "@type": "Organization",
+          name: "Freelance Software Engineer",
+          description: "Best software engineer in Kochi, Kerala",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.abhirajk.online/#website",
+        url: "https://www.abhirajk.online",
+        name: "Abhiraj K Portfolio",
+        description: "Full Stack Developer Portfolio - Best Software Engineer in Kochi, Kerala",
+        publisher: {
+          "@id": "https://www.abhirajk.online/#person"
+        },
+        inLanguage: "en-IN",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://www.abhirajk.online/?s={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.abhirajk.online/#service",
+        name: "Abhiraj K - Full Stack Development Services",
+        description: "Professional full-stack web development services in Kochi, Kerala",
+        provider: {
+          "@id": "https://www.abhirajk.online/#person"
+        },
+        areaServed: {
+          "@type": "Place",
+          name: "Kerala, India"
+        },
+        serviceType: [
+          "Full Stack Development",
+          "React.js Development",
+          "Next.js Development",
+          "Node.js Development",
+          "Web Application Development",
+          "MERN Stack Development"
+        ]
+      }
+    ]
   };
 
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
+        <meta name="author" content="Abhiraj K" />
+        <meta name="geo.region" content="IN-KL" />
+        <meta name="geo.placename" content="Kochi" />
+        <meta name="geo.position" content="9.9312;76.2673" />
+        <meta name="ICBM" content="9.9312, 76.2673" />
+        <link rel="canonical" href="https://www.abhirajk.online" />
+        <link rel="author" href="/humans.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

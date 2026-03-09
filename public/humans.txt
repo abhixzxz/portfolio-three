@@ -1,0 +1,55 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Developer & Designer: Abhiraj K
+    Site: https://www.abhirajk.online
+    Location: Kochi, Kerala, India
+    Contact: https://www.abhirajk.online/contact-me
+
+# THANKS
+
+    To all the open-source contributors
+    React, Next.js, Three.js communities
+    Framer Motion team
+    Vercel team
+
+# TECHNOLOGY COLOPHON
+
+    ## Frontend
+    React.js 19.1.0
+    Next.js 15.5.4
+    TypeScript 5
+    Tailwind CSS 4
+    Framer Motion 12.31.1
+    Three.js 0.180.0
+    GSAP 3.13.0
+
+    ## Backend & Database
+    Node.js
+    PostgreSQL
+    Express.js
+
+    ## Tools & Services
+    Cloudinary (Image CDN)
+    Vercel (Hosting)
+    Git & GitHub (Version Control)
+
+    ## Design & Animation
+    Three.js for 3D graphics
+    Framer Motion for animations
+    GSAP for advanced animations
+    Custom CSS animations
+
+# SITE
+
+    Last update: 2026/02/05
+    Standards: HTML5, CSS3, ES2022
+    Components: React Components
+    IDE: VS Code
+    Language: English
+    Doctype: HTML5
+    Accessibility: WCAG 2.1 AA compliant
+    Performance: Optimized for Core Web Vitals
+    SEO: Fully optimized with structured data

@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectAnimation from "./components/projectAnimation";
+import { ProjectCard } from "./components/projectAnimation";
 
 export const metadata = {
   metadataBase: new URL("https://www.abhirajk.online"),
@@ -60,9 +60,46 @@ export const metadata = {
 };
 
 export default function FooterSection() {
+  const projectsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Full Stack Development Projects by Abhiraj K",
+    description: "Portfolio of innovative full-stack development projects featuring React.js, Next.js, Node.js, PostgreSQL and modern web technologies",
+    url: "https://www.abhirajk.online/projects",
+    author: {
+      "@type": "Person",
+      name: "Abhiraj K",
+      url: "https://www.abhirajk.online"
+    },
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.abhirajk.online"
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Projects",
+          item: "https://www.abhirajk.online/projects"
+        }
+      ]
+    }
+  };
+
   return (
-    <div className="h-screen bg-black">
-      <ProjectAnimation />
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsStructuredData) }}
+      />
+      <div className="h-screen bg-black">
+        <h1 className="sr-only">Full Stack Development Projects by Abhiraj K - Best Software Engineer in Kochi, Kerala</h1>
+        <ProjectCard />
+      </div>
+    </>
   );
 }

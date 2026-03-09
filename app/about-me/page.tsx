@@ -63,12 +63,79 @@ export const metadata: Metadata = {
 };
 
 const AboutMe = () => {
+  const personStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Abhiraj K",
+    url: "https://www.abhirajk.online",
+    image: "https://www.abhirajk.online/abhirajk.jpg",
+    jobTitle: "Full Stack Developer",
+    description: "Best software engineer in Kochi, Kerala specializing in React.js, Next.js, Node.js, PostgreSQL, and modern web applications",
+    sameAs: [
+      "https://github.com/abhixzxz",
+      "https://www.linkedin.com/in/abhiraj-k-0661a1235",
+      "https://www.instagram.com/abhirajk84/"
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kochi",
+      addressRegion: "Kerala",
+      addressCountry: "IN"
+    },
+    knowsAbout: [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "JavaScript",
+      "TypeScript",
+      "Full Stack Development",
+      "MERN Stack",
+      "Web Development",
+      "Three.js",
+      "Framer Motion"
+    ],
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Software Engineering"
+    }
+  };
+
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.abhirajk.online"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Me",
+        item: "https://www.abhirajk.online/about-me"
+      }
+    ]
+  };
+
   return (
-    <div className="w-full flex items-center justify-between">
-      <div className="w-full">
-        <PlanetScene />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <div className="w-full flex items-center justify-between">
+        <div className="w-full">
+          <PlanetScene />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -2,37 +2,38 @@ import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.abhirajk.online";
+  const currentDate = new Date();
 
   const routes = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "daily" as const,
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about-me`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
       url: `${baseUrl}/gallery`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "weekly" as const,
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/contact-me`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: 0.8,
     },
   ];
 

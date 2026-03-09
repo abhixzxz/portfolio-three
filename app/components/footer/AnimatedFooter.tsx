@@ -47,7 +47,7 @@ const AnimatedFooter: React.FC = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {}, 1000);
+    const timer = setTimeout(() => { }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -98,7 +98,7 @@ const AnimatedFooter: React.FC = () => {
             <FooterSection title="Resources" links={footerLinks.resources} />
 
             {/* Contact Info */}
-            <ContactInfo email="abhirajk@example.com" location="Kerala,India" />
+            <ContactInfo email="abhirajk0123@gmail.com" location="Kerala,India" />
 
             <SocialLinks />
           </div>

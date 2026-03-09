@@ -48,22 +48,22 @@ const Navbar: React.FC = () => {
 
         .bar1 {
           transform: ${isOpen
-            ? "translate(0, 0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75)"
-            : "none"};
+          ? "translate(0, 0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75)"
+          : "none"};
           transform-origin: bottom right;
         }
 
         .bar2 {
           transform: ${isOpen
-            ? "translate(0, 0) rotate(-270deg) scaleX(0.35) scaleY(1.75)"
-            : "none"};
+          ? "translate(0, 0) rotate(-270deg) scaleX(0.35) scaleY(1.75)"
+          : "none"};
           transform-origin: 50% 50%;
         }
 
         .bar3 {
           transform: ${isOpen
-            ? "translate(0, -0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75)"
-            : "none"};
+          ? "translate(0, -0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75)"
+          : "none"};
           transform-origin: top left;
         }
 
@@ -134,6 +134,26 @@ const Navbar: React.FC = () => {
                 aria-label="About Abhiraj K - Full Stack Developer in Kerala"
               >
                 About-me
+              </Link>
+            </li>
+            <li role="none">
+              <Link
+                href="/projects"
+                className="nav-link glass-antiqua-regular"
+                role="menuitem"
+                aria-label="Projects - View Abhiraj K's Full Stack Development Work"
+              >
+                Projects
+              </Link>
+            </li>
+            <li role="none">
+              <Link
+                href="/gallery"
+                className="nav-link glass-antiqua-regular"
+                role="menuitem"
+                aria-label="Gallery - Professional Photos of Abhiraj K"
+              >
+                Gallery
               </Link>
             </li>
             <li role="none">
